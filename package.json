@@ -1,6 +1,6 @@
 {
   "name": "react-native-native-log",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A React Native log function that under the hood calls NSLog() on iOS and Log.i() on Android",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
