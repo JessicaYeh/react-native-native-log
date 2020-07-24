@@ -1,7 +1,8 @@
 import { NativeModules } from 'react-native';
 
 type NativeLogType = {
-  multiply(a: number, b: number): Promise<number>;
+  log(message: string): void;
+  logWithTag(tag: string, message: string): void;
 };
 
 const { NativeLog } = NativeModules;

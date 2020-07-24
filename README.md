@@ -1,6 +1,8 @@
 # react-native-native-log
 
-A React Native log function that under the hood calls NSLog() on iOS and Log.i() on Android
+A React Native log function that under the hood calls NSLog() on iOS and Log.i() on Android.
+
+A potential use case for this library is to be able to read logs with an E2E UI testing tool like Appium.
 
 ## Installation
 
@@ -15,8 +17,40 @@ import NativeLog from "react-native-native-log";
 
 // ...
 
-const result = await NativeLog.multiply(3, 7);
+NativeLog.log('hello world'); // hello world
+// or
+NativeLog.logWithTag('my-tag', 'hello world'); // [my-tag] hello world
 ```
+
+## Example app
+
+To get started with the project, run `yarn bootstrap` in the root directory to install the required dependencies for each package:
+
+```sh
+yarn bootstrap
+```
+
+### iOS
+
+To run the example app on iOS:
+
+```sh
+yarn example ios
+```
+
+In order to see the native logs (they won't show in the normal console log in the Metro window):
+  - Run the iOS app from example/ios/NativeLogExample.xcworkspace in Xcode and look at the log window there
+
+### Android
+
+To run the example app on Android:
+
+```sh
+yarn example android
+```
+
+In order to see the native logs (they won't show in the normal console log in the Metro window):
+  - run `adb logcat`
 
 ## Contributing
 

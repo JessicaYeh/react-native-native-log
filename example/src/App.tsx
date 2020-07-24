@@ -1,18 +1,41 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  Button,
+  Text,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Platform,
+} from 'react-native';
 import NativeLog from 'react-native-native-log';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    NativeLog.multiply(3, 7).then(setResult);
-  }, []);
+  const [tag, setTag] = React.useState('custom-tag');
+  const [message, setMessage] = React.useState('Hello world');
 
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <Text>Tag</Text>
+        <TextInput style={styles.textInput} value={tag} onChangeText={setTag} />
+        <Text>Message</Text>
+        <TextInput
+          style={styles.textInput}
+          value={message}
+          onChangeText={setMessage}
+        />
+        <Button title="Log Message" onPress={() => NativeLog.log(message)} />
+        <Button
+          title="Log Message with Tag"
+          onPress={() => NativeLog.logWithTag(tag, message)}
+        />
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -21,5 +44,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 16,
+  },
+  textInput: {
+    borderWidth: 1,
+    padding: 8,
+    width: '100%',
   },
 });

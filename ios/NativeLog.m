@@ -2,8 +2,8 @@
 
 @interface RCT_EXTERN_MODULE(NativeLog, NSObject)
 
-RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
-                 withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(log:(NSString *)message)
+
+RCT_EXTERN_METHOD(logWithTag:(NSString *)tag message:(NSString *)message)
 
 @end
